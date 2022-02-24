@@ -1,0 +1,33 @@
+{
+  "version": "2.0",
+  "extensions": {
+    "http": {
+      "routePrefix": "api",
+      "maxConcurrentRequests": 5,
+      "maxOutstandingRequests": 30
+    },
+    "logging": {
+      "applicationInsights": {
+        "samplingSettings": {
+          "isEnabled": true,
+          "excludedTypes": "Request"
+        },
+        "Values": {
+          // this means you'll be locking your Azure Functions App Service to running only .NET languages (typically C#). Other possibilities are "java" and "node"
+          "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+        }
+      }
+    },
+    "CosmosDb": {
+      "EndpointUrl": "https://azurefunctioncosmosdb.documents.azure.com:443/",
+      "PrimaryKey": "KHbfZRQSXZhi3Txb036p5V5eB7EaEMQkOOJPHfM4SwqH5kFypsLQx4aKzADlLAuJk46LsvK1ayNPw7gOMkvohw==",
+      "DatabaseName": "AzureCosmosDbCrud",
+      "Containers": [
+        {
+          "Name": "EmployeeDetails",
+          "PartitionKey": "/LastName"
+        }
+      ]
+    }
+  }
+}
